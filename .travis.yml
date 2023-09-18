@@ -4,6 +4,7 @@ dist: trusty
 language: java
 jdk:
   - oraclejdk8
+  - orac
 
 script:
   - ./gradlew check
@@ -13,17 +14,17 @@ script:
 jobs:
   include:
   - name: Test UI
-    script: COVERAGE=0.1 ./gradlew -p ./monolithic/ui check
+    script: COVERAGE=0.25 ./gradlew -p ./monolithic/ui check
   - name: Test service/cart
-    script: COVERAGE=0.1 ./gradlew -p ./monolithic/service/cart check
+    script: COVERAGE=0.25 ./gradlew -p ./monolithic/service/cart check
   - name: Test service/user
-    script: COVERAGE=0.1 ./gradlew -p ./monolithic/service/user check
+    script: COVERAGE=0.25 ./gradlew -p ./monolithic/service/user check
   - name: Test repository/order
     script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/order check
   - name: Test repository/cart
-    script: COVERAGE=0.1 ./gradlew -p ./monolithic/repository/cart check
+    script: COVERAGE=0.25 ./gradlew -p ./monolithic/repository/cart check
   - name: Test repository/product
-    script: COVERAGE=0.1 ./gradlew -p ./monolithic/repository/product check
+    script: COVERAGE=0.25 ./gradlew -p ./monolithic/repository/product check
   - name: Test repository/user
     script: COVERAGE=0.5 ./gradlew -p ./monolithic/repository/user check
 
