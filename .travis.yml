@@ -5,5 +5,5 @@ language: java
 jdk:
   - oraclejdk8
 
-install:
+script:
   - echo 'testing is comming soon!!'
