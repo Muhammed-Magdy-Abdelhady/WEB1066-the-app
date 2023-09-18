@@ -6,4 +6,4 @@ jdk:
   - oraclejdk8
 
 script:
-  - echo 'testing is comming soon!!'
+  - ./gradlew test
