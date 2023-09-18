@@ -1,11 +1,11 @@
 os: linux
 dist: trusty
-
 language: java
 jdk:
-  - oraclejdk8
-  - oraclejdk9
+- oraclejdk8
+- oraclejdk9
 env:
+  matrix:
   - COVER=0.25 CHECK=./monolithic/ui
   - COVER=0.25 CHECK=./monolithic/service/cart
   - COVER=0.25 CHECK=./monolithic/service/user
@@ -13,17 +13,17 @@ env:
   - COVER=0.25 CHECK=./monolithic/repository/cart
   - COVER=0.25 CHECK=./monolithic/repository/product
   - COVER=0.3 CHECK=./monolithic/repository/user
-  
+  global:
+    secure: Yz1Vfs9vKHqNobr592gygZWvJwYrvpimjUiAJ43+OcyRZyxvjV7uDWic3i1POsIxZ1UQov9z4+IToUWLk5lHagZLtpWdVF/E+hX9BsRLGptOUwh5bsAZzLCE2cYAzELuhW74++eH4t45SHGGXMcGnUmJP9iFqnZj0PPR5qKow5NnT1P/B1CaLrGLqrRyE+746lpzJxm0pNaTp4+JpLuTrpuOGVL8cLqXtaV392fXlH5g3dnU6zs7sCaOsKCcAN2THr7tGrtUmsA3CY0DHKo/KbTX9vMSk9g0rjIKSMVmkB9lJPpCRhbCuhO5raHso+DBnZith2VA0oPfiGMzAWtE1297zQ6RLb/7caLqcz53SVQR1ZleNn1z1pbDdgVng8C/i1ywzp6DQs8JsR97NhT2SZi387Vb5I+JRFX0z0zFJb6D0TcyNk3GhK2qhKZZ4+N/gSmRFdBT3wwhS42EBzinvAMHqbtIOuR0SLiqy9IHxw7LWAOxN1iA2ukJlbW4nIaUMme4QxajW1/+q1bFeQJB+doiFj1sP7iwvs68ITzUUCiLYEsUMAIOVfbPOC/xajvg912kwYF2do06vxh2q+ovdmxwBZTQp0OTD0XfJVELnQgV1ONPHAzzqt2zsSwpPqpzkauRRqlKWG0OD5HEuk0f2OBoBOf1szK2bA1dL6KwIdE=
 script:
-  - ./gradlew jacocoTestReport
-  - find . -name jacocoTestReport.csv | xargs cat | awk -F ',' '{print $3" "$4" "$5}'
-  - COVERAGE=$COVER ./gradlew -p $CHECK check
-
+- "./gradlew jacocoTestReport"
+- find . -name jacocoTestReport.csv | xargs cat | awk -F ',' '{print $3" "$4" "$5}'
+- COVERAGE=$COVER ./gradlew -p $CHECK check
 before_deploy:
-  - COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
-
+- COVERAGE=$COVERAGE_THRESHOLD ./gradlew check jacocoTestCoverageVerification
+- bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_USERNAME}\" --password-stdin"
 deploy:
- - provider: script
-   script: echo "WIP"
-   on:
-     all_branches: true
+- provider: script
+  script: echo "WIP"
+  on:
+    all_branches: true
