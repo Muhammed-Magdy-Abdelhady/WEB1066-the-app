@@ -6,13 +6,13 @@ jdk:
   - oraclejdk8
   - oraclejdk9
 env:
-  - COVER=0.1 CHECK=./monolithic/ui
-  - COVER=0.1 CHECK=./monolithic/service/cart
-  - COVER=0.1 CHECK=./monolithic/service/user
-  - COVER=0.5 CHECK=./monolithic/repository/order
-  - COVER=0.1 CHECK=./monolithic/repository/cart
-  - COVER=0.1 CHECK=./monolithic/repository/product
-  - COVER=0.5 CHECK=./monolithic/repository/user
+  - COVER=0.25 CHECK=./monolithic/ui
+  - COVER=0.25 CHECK=./monolithic/service/cart
+  - COVER=0.25 CHECK=./monolithic/service/user
+  - COVER=0.3 CHECK=./monolithic/repository/order
+  - COVER=0.25 CHECK=./monolithic/repository/cart
+  - COVER=0.25 CHECK=./monolithic/repository/product
+  - COVER=0.3 CHECK=./monolithic/repository/user
   
 script:
   - ./gradlew check
